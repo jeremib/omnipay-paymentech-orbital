@@ -15,7 +15,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "twg/omnipay-paymentech-orbital": "~1.0"
+        "twg/omnipay-paymentech-orbital": "~0.0"
     }
 }
 ```
