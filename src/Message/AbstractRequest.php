@@ -21,6 +21,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function sendData($data)
     {
+//        print_r($data); exit;
         $httpResponse = $this->httpClient->post(
             $this->getEndpoint(),
             $this->getHeaders(),
@@ -37,7 +38,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return array(
             'MIME-Version' => '1.0',
-            'Content-type' => 'Application/PTI56',
+            'Content-type' => 'Application/PTI71',
             'Content-transfer-encoding' => 'text',
             'Request-number' => '1',
             'Document-type' => 'Request'
@@ -169,5 +170,29 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setTxRefNum($value)
     {
         return $this->setParameter('txRefNum', $value);
+    }
+
+    public function getCardBrand() {
+        return $this->getParameter('cardBrand');
+    }
+
+    public function setCardBrand($value) {
+        return $this->setParameter('cardBrand', $value);
+    }
+
+    public function getBCRtNum() {
+        return $this->getParameter('BCRtNum');
+    }
+
+    public function setBCRtNum($value) {
+        return $this->setParameter('BCRtNum', $value);
+    }
+
+    public function getCheckDDA() {
+        return $this->getParameter('CheckDDA');
+    }
+
+    public function setCheckDDA($value) {
+        return $this->setParameter('CheckDDA', $value);
     }
 }

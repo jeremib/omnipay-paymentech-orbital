@@ -2,6 +2,7 @@
 
 namespace Omnipay\PaymentechOrbital\Message;
 
+use function json_encode;
 use SimpleXMLElement;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -12,7 +13,10 @@ class NewOrderResponse extends AbstractResponse
 {
     public function getTransactionReference()
     {
-        return $this->data->NewOrderResp->TxRefNum->__toString();
+        return [
+            'trans_reference'   => $this->data->NewOrderResp->TxRefNum->__toString(),
+            'order_id'          => $this->data->NewOrderResp->OrderID->__toString()
+            ];
     }
 
     public function isApproved()
