@@ -1,5 +1,5 @@
 {
-    "name": "twg/omnipay-paymentech-orbital",
+    "name": "jeremib/omnipay-paymentech-orbital",
     "type": "library",
     "description": "Paymentech Orbital driver for the Omnipay payment processing library",
     "keywords": [
