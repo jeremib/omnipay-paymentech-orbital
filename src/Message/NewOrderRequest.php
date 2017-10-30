@@ -18,6 +18,7 @@ abstract class NewOrderRequest extends AbstractRequest
         $newOrder = $data->NewOrder;
         $newOrder->OrbitalConnectionUsername = $this->getUsername();
         $newOrder->OrbitalConnectionPassword = $this->getPassword();
+
         $newOrder->IndustryType = $this->getIndustryType();
         $newOrder->MessageType = $this->getMessageType();
         $newOrder->BIN = $this->getBin();
@@ -29,21 +30,42 @@ abstract class NewOrderRequest extends AbstractRequest
         }
 
 
-        if ($card = $this->getCard()) {
+
+        /** echeck */
+        if ( $this->getBCRtNum() ) {
+            $newOrder->CurrencyCode = $this->getCurrencyCode();
+            $newOrder->CurrencyExponent = $this->getCurrencyExponent();
+            $newOrder->BCRtNum = $this->getBCRtNum();
+            $newOrder->CheckDDA = $this->getCheckDDA();
+
+            if ( $card = $this->getCard() ) {
+                $newOrder->AVSzip = $card->getBillingPostcode();
+                $newOrder->AVSaddress1 = $card->getBillingAddress1();
+                $newOrder->AVSaddress2 = $card->getBillingAddress2();
+                $newOrder->AVScity = $card->getBillingCity();
+                $newOrder->AVSstate = $card->getBillingState();
+                $newOrder->AVSphoneNum = $card->getBillingPhone();
+                $newOrder->AVSname = $card->getBillingName();
+                $newOrder->AVScountryCode = $card->getBillingCountry();
+
+                $newOrder->AVSDestzip = $card->getShippingPostcode();
+                $newOrder->AVSDestaddress1 = $card->getShippingAddress1();
+                $newOrder->AVSDestaddress2 = $card->getShippingAddress2();
+                $newOrder->AVSDestcity = $card->getShippingCity();
+                $newOrder->AVSDeststate = $card->getShippingState();
+                $newOrder->AVSDestphoneNum = $card->getShippingPhone();
+                $newOrder->AVSDestname = $card->getShippingName();
+                $newOrder->AVSDestcountryCode = $card->getShippingCountry();
+            }
+            unset($newOrder->AccountNum);
+            unset($newOrder->Exp);
+            unset($newOrder->CardSecVal);
+        } elseif ($card = $this->getCard()) {
             $newOrder->AccountNum = $card->getNumber();
             $newOrder->Exp = $card->getExpiryDate('my');
             $newOrder->CurrencyCode = $this->getCurrencyCode();
             $newOrder->CurrencyExponent = $this->getCurrencyExponent();
             $newOrder->CardSecVal = $card->getCvv();
-        }
-
-        if ( $this->getBCRtNum() ) {
-            $newOrder->BCRtNum = $this->getBCRtNum();
-            $newOrder->CheckDDA = $this->getCheckDDA();
-            unset($newOrder->AccountNum);
-            unset($newOrder->Exp);
-            unset($newOrder->CardSecVal);
-        }
 
             $newOrder->AVSzip = $card->getBillingPostcode();
             $newOrder->AVSaddress1 = $card->getBillingAddress1();
@@ -62,6 +84,8 @@ abstract class NewOrderRequest extends AbstractRequest
             $newOrder->AVSDestphoneNum = $card->getShippingPhone();
             $newOrder->AVSDestname = $card->getShippingName();
             $newOrder->AVSDestcountryCode = $card->getShippingCountry();
+
+        }
 
 
 

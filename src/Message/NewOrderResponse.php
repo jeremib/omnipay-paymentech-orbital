@@ -15,7 +15,8 @@ class NewOrderResponse extends AbstractResponse
     {
         return [
             'trans_reference'   => $this->data->NewOrderResp->TxRefNum->__toString(),
-            'order_id'          => $this->data->NewOrderResp->OrderID->__toString()
+            'order_id'          => $this->data->NewOrderResp->OrderID->__toString(),
+            'auth_code'         => $this->data->NewOrderResp->AuthCode->__toString(),
             ];
     }
 

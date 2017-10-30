@@ -10,18 +10,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $retryCount = 0;
 
     protected $testUrls = array(
-        'https://orbitalvar1.paymentech.net/authorize',
-        'https://orbitalvar2.paymentech.net/authorize'
+        'https://orbitalvar1.chasepaymentech.com/authorize',
+        'https://orbitalvar2.chasepaymentech.com/authorize'
     );
 
     protected $liveUrls = array(
-        'https://orbital1.paymentech.net/authorize',
-        'https://orbital2.paymentech.net/authorize'
+        'https://orbital1.chasepaymentech.com/authorize',
+        'https://orbital2.chasepaymentech.com/authorize'
     );
 
     public function sendData($data)
     {
-//        print_r($data); exit;
         $httpResponse = $this->httpClient->post(
             $this->getEndpoint(),
             $this->getHeaders(),
