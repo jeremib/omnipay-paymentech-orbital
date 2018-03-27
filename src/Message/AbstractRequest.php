@@ -123,7 +123,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getOrderId()
     {
-        return $this->getParameter('orderId');
+        return substr($this->getParameter('orderId'), 0, 22);
     }
 
     public function setOrderId($value)
