@@ -39,7 +39,7 @@ class GatewayTest extends GatewayTestCase
         $response = $request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('5480BA96D9AED84530313C2DD9201256745B5416', $response->getTransactionReference());
+        $this->assertSame('5480BA96D9AED84530313C2DD9201256745B5416', $response->getTransactionReference()['trans_reference']);
         $this->assertTrue($response->isApproved());
         $this->assertSame('00', $response->getCode());
         $this->assertSame('Approved', $response->getMessage());
@@ -80,7 +80,7 @@ class GatewayTest extends GatewayTestCase
         $response = $request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('5480C67F9F583EEF09E06A4EE56657744A88541A', $response->getTransactionReference());
+        $this->assertSame('5480C67F9F583EEF09E06A4EE56657744A88541A', $response->getTransactionReference()['trans_reference']);
         $this->assertTrue($response->isApproved());
         $this->assertSame('00', $response->getCode());
         $this->assertSame('Approved', $response->getMessage());
@@ -101,7 +101,7 @@ class GatewayTest extends GatewayTestCase
         $response = $request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('5480C780809EEFBC09213F79CEA968BDEE0954AD', $response->getTransactionReference());
+        $this->assertSame('5480C780809EEFBC09213F79CEA968BDEE0954AD', $response->getTransactionReference()['trans_reference']);
         $this->assertTrue($response->isApproved());
     }
 
@@ -120,7 +120,7 @@ class GatewayTest extends GatewayTestCase
         $response = $request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('5480DBB1662A5CC673A443AEA264698837FD5499', $response->getTransactionReference());
+        $this->assertSame('5480DBB1662A5CC673A443AEA264698837FD5499', $response->getTransactionReference()['trans_reference']);
         $this->assertTrue($response->isApproved());
     }
 
@@ -157,7 +157,7 @@ class GatewayTest extends GatewayTestCase
         $response = $request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('5481FDB3206618C4C114E587D23A16FCF10C5396', $response->getTransactionReference());
+        $this->assertSame('5481FDB3206618C4C114E587D23A16FCF10C5396', $response->getTransactionReference()['trans_reference']);
         $this->assertTrue($response->isApproved());
         $this->assertSame('100', $response->getAmount());
     }
